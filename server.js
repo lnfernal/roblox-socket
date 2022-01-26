@@ -6,11 +6,21 @@ server.use(express.json());
 
 server.get('/', function (req, res) {
     (async () => {
-        
+        res.send('error')
     })()
 })
 
-server.post('/', function (req, res) {
+server.post('/privateparty/create', function (req, res) {
+    (async () => {
+        const action = req.body.Data[0]
+        const userId = req.body.Data[1]
+
+        if (!PrivatePartyHandler[action]) return;
+        res.send(await PrivatePartyHandler[action](userId))
+    })()
+})
+
+server.post('/privateparty/close', function (req, res) {
     (async () => {
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
