@@ -50,5 +50,6 @@ async function ClosePrivateParty(userid) {
 
 module.exports = {
     CreateNewPrivateParty: CreateNewPrivateParty,
-    ClosePrivateParty: ClosePrivateParty
+    ClosePrivateParty: ClosePrivateParty,
+    GetPrivatePartyFromUserIdAsync: GetPrivatePartyFromUserIdAsync
 }

@@ -12,6 +12,7 @@ server.get('/', function (req, res) {
 
 server.post('/', function (req, res) {
     (async () => {
+        console.log(res)
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
 
