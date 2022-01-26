@@ -36,7 +36,7 @@ async function CreateNewPrivateParty(userid) {
             Owner: userid,
             Players: [userid]
         })
-        console.log(await PrivatePartyData.all())
+        console.log('Created successfully.')
         return {success: true, id: PartyID}
     } catch(err) {
         return {success: false, error: err}
