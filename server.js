@@ -11,9 +11,12 @@ server.get('/', function (req, res) {
 })
 
 server.post('/', function (req, res) {
-    console.log(req.body.Data[1]);
     (async () => {
-        res.send(await PrivatePartyHandler.CreateNewPrivateParty(req.body.Data[1]))
+        const action = req.body.Data[0]
+        const userId = req.body.Data[1]
+
+        if(!PrivatePartyHandler[action]) return;
+        res.send(await PrivatePartyHandler[action](userId))
     })()
 })
 

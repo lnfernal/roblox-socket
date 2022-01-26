@@ -36,6 +36,13 @@ async function CreateNewPrivateParty(userid) {
     }
 }
 
+async function ClosePrivateParty(partyId) {
+    if (PrivatePartyData.get(partyId)) {
+        PrivatePartyData.delete(partyId)
+        console.log(await PrivatePartyData.all())
+    }
+}
+
 async function GetAllPrivateParties() {
 
 }
@@ -45,5 +52,6 @@ module.exports = {
     GetDataFromNameAsync: GetDataFromNameAsync,
     GetPrivatePartyFromUserIdAsync: GetPrivatePartyFromUserIdAsync,
     CreatePrivatePartyIdentifier: CreatePrivatePartyIdentifier,
-    CreateNewPrivateParty: CreateNewPrivateParty
+    CreateNewPrivateParty: CreateNewPrivateParty,
+    ClosePrivateParty: ClosePrivateParty
 }
