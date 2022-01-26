@@ -45,11 +45,7 @@ async function ClosePrivateParty(userid) {
         console.log('Deleted successfully.')
         return {success: true}
     }
-    return {}
-}
-
-async function GetAllPrivateParties() {
-
+    return {success: false, statusReason: 'no_private_party_found'}
 }
 
 module.exports = {
