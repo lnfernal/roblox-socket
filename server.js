@@ -8,7 +8,7 @@ const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 
 server.get('/', function (req, res) {
     console.log(req)
-    res.send()
+    res.send(req)
 })
 
 server.listen(process.env.PORT || 8000, function() {
