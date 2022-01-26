@@ -2,13 +2,10 @@ const express = require('express');
 const server = express();
 const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 
-(async () => {
-    console.log(await PrivatePartyHandler.CreatePrivatePartyIdentifier())
-})()
-
 server.get('/', function (req, res) {
-    console.log(req)
-    res.send(req)
+    (async () => {
+        res.send(await PrivatePartyHandler.CreatePrivatePartyIdentifier())
+    })()
 })
 
 server.listen(process.env.PORT || 8000, function() {
