@@ -1,6 +1,8 @@
 const express = require('express');
 const server = express();
+
 const PrivatePartyHandler = require('./PrivatePartyHandler.js');
+server.use(express.json());
 
 server.get('/', function (req, res) {
     (async () => {
