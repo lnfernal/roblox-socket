@@ -36,6 +36,10 @@ async function CreateNewPrivateParty(userid) {
     }
 }
 
+async function GetAllPrivateParties() {
+    
+}
+
 module.exports = {
     GetDataFromUserIdAsync: GetDataFromUserIdAsync,
     GetDataFromNameAsync: GetDataFromNameAsync,
