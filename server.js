@@ -18,7 +18,7 @@ server.post('/', function (req, res) {
         if (!PrivatePartyHandler[action]) return;
         const status = await PrivatePartyHandler[action](userId)
         console.log(status)
-        res.send(status)
+        res.send('status')
     })()
 })
 
