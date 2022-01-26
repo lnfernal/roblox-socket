@@ -2,5 +2,5 @@ const express = require('express')
 const app = express()
 
 app.get('/', function (req, res) {
-    console.log('IT WORKS!!!!!')
+    res.send('GET request has been received.')
 })
