@@ -15,7 +15,11 @@ server.post('/', function (req, res) {
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
 
-        if(!PrivatePartyHandler[action]) return;
+        if (PrivatePartyHandler.GetPrivatePartyFromUserIdAsync(userId)) {
+            console.log(`${userId} already owns a party.`)
+            return
+        }
+        if (!PrivatePartyHandler[action]) return;
         res.send(await PrivatePartyHandler[action](userId))
     })()
 })
@@ -23,8 +27,3 @@ server.post('/', function (req, res) {
 server.listen(process.env.PORT || 8000, function() {
     console.log(`Server running on port ${process.env.PORT || 8000}`)
 })
-
-/*
-const PrivatePartyData = {success: true, id: (await PrivatePartyHandler.CreatePrivatePartyIdentifier()).toString()}
-res.send(await PrivatePartyHandler.CreateNewPrivateParty(10))
-*/
