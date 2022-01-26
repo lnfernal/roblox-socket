@@ -2,8 +2,6 @@ const fetch = require('node-fetch')
 const jsoning = require('jsoning')
 const PrivatePartyData = new jsoning('./Data/PrivatePartyData.json')
 
-PrivatePartyData.set('a', 'b')
-
 async function CreatePrivatePartyIdentifier() {
     return Math.floor(Math.random() * (999999 - 100000) + 100000)
 }
@@ -26,7 +24,7 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 async function CreateNewPrivateParty(userid) {
     const PartyID = await CreatePrivatePartyIdentifier()
     console.log(userid, PartyID)
-    PrivatePartyData.set('a', 'b')
+    PrivatePartyData.push('a', 'b')
 
     return {success: true, id: PartyID}
 }
