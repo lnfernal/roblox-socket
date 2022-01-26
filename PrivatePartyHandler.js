@@ -24,8 +24,7 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 }
 
 async function CreateNewPrivateParty(userid) {
-    console.log(GetPrivatePartyFromUserIdAsync(userid))
-    if (GetPrivatePartyFromUserIdAsync(userid)) {
+    if (await GetPrivatePartyFromUserIdAsync(userid)) {
         console.log(`User ${userid} already owns a private party!`)
         return
     }
@@ -45,7 +44,7 @@ async function CreateNewPrivateParty(userid) {
 }
 
 async function ClosePrivateParty(userid) {
-    if (!GetPrivatePartyFromUserIdAsync(userid)) {
+    if (!await GetPrivatePartyFromUserIdAsync(userid)) {
         console.log(`User ${userid} doesn't own a private party!`)
         return
     }
