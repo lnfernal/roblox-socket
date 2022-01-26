@@ -23,7 +23,7 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 
 async function CreateNewPrivateParty(userid) {
     return (async () => {
-        const PartyID = Number(await CreatePrivatePartyIdentifier())
+        const PartyID = await CreatePrivatePartyIdentifier()
         PrivatePartyData.set(await CreatePrivatePartyIdentifier(), {
             PartyID: PartyID,
             Owner: userid,
