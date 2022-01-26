@@ -16,10 +16,11 @@ async function GetDataFromNameAsync(username) {
 
 async function GetPrivatePartyFromUserIdAsync(UserId) {
     console.log(UserId)
-    console.log(await PrivatePartyData.all())
     for (const PrivateParty of Object.values(await PrivatePartyData.all())) {
-        console.log(PrivateParty.Owner)
-        if (PrivateParty.Owner === UserId) return PrivateParty
+        if (PrivateParty.Owner === UserId) {
+            console.log(PrivateParty)
+            return PrivateParty
+        }
     }
     return
 }
