@@ -15,10 +15,8 @@ async function GetDataFromNameAsync(username) {
 }
 
 async function GetPrivatePartyFromUserIdAsync(UserId) {
-    console.log(UserId)
     for (const PrivateParty of Object.values(await PrivatePartyData.all())) {
         if (PrivateParty.Owner === UserId) {
-            console.log(PrivateParty)
             return PrivateParty
         }
     }
@@ -26,6 +24,7 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 }
 
 async function CreateNewPrivateParty(userid) {
+    console.log(GetPrivatePartyFromUserIdAsync(userid))
     if (GetPrivatePartyFromUserIdAsync(userid)) {
         console.log(`User ${userid} already owns a private party!`)
         return
