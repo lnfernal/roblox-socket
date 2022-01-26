@@ -29,7 +29,7 @@ async function CreateNewPrivateParty(userid) {
         Players: []
     })*/
 
-    return {success: true, id: PartyID}
+    return {success: true}
 }
 
 module.exports = {
