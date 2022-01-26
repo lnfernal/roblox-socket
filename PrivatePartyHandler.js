@@ -2,6 +2,8 @@ const fetch = require('node-fetch')
 const jsoning = require('jsoning')
 const PrivatePartyData = new jsoning('./Data/PrivatePartyData.json')
 
+PrivatePartyData.set('a', 'b')
+
 async function CreatePrivatePartyIdentifier() {
     return Math.floor(Math.random() * (999999 - 100000) + 100000)
 }
