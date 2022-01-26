@@ -26,21 +26,17 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 async function CreateNewPrivateParty(userid) {
     if (await GetPrivatePartyFromUserIdAsync(userid)) {
         console.log(`User ${userid} already owns a private party!`)
-        return
+        return await GetPrivatePartyFromUserIdAsync(userid)
     }
 
-    try {
-        const PartyID = await CreatePrivatePartyIdentifier()
-        await PrivatePartyData.set((PartyID).toString(), {
-            PartyID: PartyID,
-            Owner: userid,
-            Players: [userid]
-        })
-        console.log('Created successfully.')
-        return {success: true, id: PartyID}
-    } catch(err) {
-        return {success: false, error: err}
-    }
+    const PartyID = await CreatePrivatePartyIdentifier()
+    await PrivatePartyData.set((PartyID).toString(), {
+        PartyID: PartyID,
+        Owner: userid,
+        Players: [userid]
+    })
+
+    return {success: true, id: PartyID}
 }
 
 async function ClosePrivateParty(userid) {
