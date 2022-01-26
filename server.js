@@ -12,13 +12,11 @@ server.get('/', function (req, res) {
 
 server.post('/', function (req, res) {
     (async () => {
-        console.log(res)
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
 
         if (!PrivatePartyHandler[action]) return;
         const status = await PrivatePartyHandler[action](userId)
-        console.log(status)
         res.send(status)
     })()
 })
