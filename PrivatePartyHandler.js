@@ -17,7 +17,7 @@ async function GetDataFromNameAsync(username) {
 async function GetPrivatePartyFromUserIdAsync(UserId) {
     console.log(await PrivatePartyData.all())
     for (const PrivateParty of Object.values(await PrivatePartyData.all())) {
-        if (PrivateParty.Owner == UserId) return PrivateParty
+        if (PrivateParty.Owner === UserId) return PrivateParty
     }
     return
 }
