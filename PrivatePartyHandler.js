@@ -23,6 +23,11 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 }
 
 async function CreateNewPrivateParty(userid) {
+    if (GetPrivatePartyFromUserIdAsync(userid)) {
+        console.log(`User ${userid} already owns a private party!`)
+        return
+    }
+
     try {
         const PartyID = await CreatePrivatePartyIdentifier()
         await PrivatePartyData.set((PartyID).toString(), {
@@ -37,11 +42,16 @@ async function CreateNewPrivateParty(userid) {
     }
 }
 
-async function ClosePrivateParty(partyId) {
-    if (PrivatePartyData.get(partyId)) {
+async function ClosePrivateParty(userid) {
+    if (!GetPrivatePartyFromUserIdAsync(userid)) {
+        console.log(`User ${userid} doesn't own a private party!`)
+        return
+    }
+
+    /*if (GetPrivatePartyFromUserIdAsync(userid)) {
         PrivatePartyData.delete(partyId)
         console.log(await PrivatePartyData.all())
-    }
+    }*/
 }
 
 async function GetAllPrivateParties() {
@@ -49,10 +59,6 @@ async function GetAllPrivateParties() {
 }
 
 module.exports = {
-    GetDataFromUserIdAsync: GetDataFromUserIdAsync,
-    GetDataFromNameAsync: GetDataFromNameAsync,
-    GetPrivatePartyFromUserIdAsync: GetPrivatePartyFromUserIdAsync,
-    CreatePrivatePartyIdentifier: CreatePrivatePartyIdentifier,
     CreateNewPrivateParty: CreateNewPrivateParty,
     ClosePrivateParty: ClosePrivateParty
 }

@@ -15,10 +15,6 @@ server.post('/', function (req, res) {
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
 
-        if (PrivatePartyHandler.GetPrivatePartyFromUserIdAsync(userId)) {
-            console.log(`${userId} already owns a party.`)
-            return
-        }
         if (!PrivatePartyHandler[action]) return;
         res.send(await PrivatePartyHandler[action](userId))
     })()
