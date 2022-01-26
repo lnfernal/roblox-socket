@@ -1,6 +1,6 @@
 const fetch = require('node-fetch')
 const jsoning = require('jsoning')
-const privatePartyData = new jsoning('./Data/PrivatePartyData.json')
+const PrivatePartyData = new jsoning('./Data/PrivatePartyData.json')
 
 async function CreatePrivatePartyIdentifier() {
     return Math.floor(Math.random() * (999999 - 100000) + 100000)
@@ -15,15 +15,29 @@ async function GetDataFromNameAsync(username) {
 }
 
 async function GetPrivatePartyFromUserIdAsync(UserId) {
-    for (const PrivateParty of Object.values(await privatePartyData.all())) {
+    for (const PrivateParty of Object.values(await PrivatePartyData.all())) {
         if (PrivateParty.Owner == UserId) return PrivateParty
     }
     return
+}
+
+async function CreateNewPrivateParty(userid) {
+    return (async () => {
+        const PartyID = await CreatePrivatePartyIdentifier()
+        PrivatePartyData.set(await CreatePrivatePartyIdentifier(), {
+            PartyID: PartyID,
+            Owner: userid,
+            Players: {}
+        })
+
+        return {success: true, id: PartyID}
+    })()
 }
 
 module.exports = {
     GetDataFromUserIdAsync: GetDataFromUserIdAsync,
     GetDataFromNameAsync: GetDataFromNameAsync,
     GetPrivatePartyFromUserIdAsync: GetPrivatePartyFromUserIdAsync,
-    CreatePrivatePartyIdentifier: CreatePrivatePartyIdentifier
+    CreatePrivatePartyIdentifier: CreatePrivatePartyIdentifier,
+    CreateNewPrivateParty: CreateNewPrivateParty
 }
