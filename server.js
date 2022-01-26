@@ -9,7 +9,7 @@ server.get('/', function (req, res) {
 })
 
 server.post('/', function (req, res) {
-    console.log(req.body)
+    console.log(req.body);
     (async () => {
         res.send({})
     })()
