@@ -27,7 +27,7 @@ async function CreateNewPrivateParty(userid) {
         PrivatePartyData.set(PartyID, {
             PartyID: Number(PartyID),
             Owner: userid,
-            Players: {}
+            Players: []
         })
 
         return {success: true, id: PartyID}
