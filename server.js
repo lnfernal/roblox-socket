@@ -4,11 +4,11 @@ const server = express();
 const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 server.use(express.json());
 
-/*server.get('/', function (req, res) {
+server.get('/', function (req, res) {
     (async () => {
         
     })()
-})*/
+})
 
 server.post('/', function (req, res) {
     (async () => {
@@ -16,7 +16,7 @@ server.post('/', function (req, res) {
         const userId = req.body.Data[1]
 
         if (!PrivatePartyHandler[action]) return;
-        res.end(await PrivatePartyHandler[action](userId))
+        res.end('hi')
     })()
 })
 
