@@ -12,6 +12,7 @@
     "cors": "^2.8.5",
     "discord.js": "^12.5.3",
     "express": "^4.17.2",
+    "jsoning": "^0.12.22",
     "roblox-long-polling": "^2.0.3"
   }
 }

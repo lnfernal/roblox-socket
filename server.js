@@ -1,12 +1,10 @@
 const express = require('express')
-const cors = require('cors')
-
 const server = express()
-.use(cors())
+const privatePartyHandler = require('./main.js')
 
 server.get('/', function (req, res) {
-    res.send('GET request has been received.')
-    console.log('a')
+    console.log(req)
+    res.send()
 })
 
 server.listen(process.env.PORT || 8000, function() {

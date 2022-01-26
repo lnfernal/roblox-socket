@@ -1,47 +1,28 @@
-const { Client, Collection, WebhookClient } = require('discord.js')
-const fs = require('fs')
+const fetch = require('node-fetch')
+const jsoning = require('jsoning')
+const privatePartyData = new jsoning('/Data/PrivatePartyData.json')
 
-const client = new Client()
-
-client.commands = new Collection()
-for (const file of fs.readdirSync('./Commands/').filter(file => file.endsWith('.js'))) {
-    const command = require(`./Commands/${file}`)
-    client.commands.set(command.name, command)
+async function CreatePrivatePartyIdentifier() {
+    return Math.floor(Math.random() * (999999 - 100000) + 100000)
 }
 
-function isCommand(message) {
-    return message.content.startsWith('-')
+async function GetDataFromUserIdAsync(userid) {
+    return fetch(`https://api.roblox.com/users/${userid}`)
 }
 
-function findCommandAlias(alias) {
-    for (const command of client.commands) {
-        if (command[1].aliases.find(commandAlias => commandAlias === alias)) return command[1]
+async function GetDataFromNameAsync(username) {
+    return fetch(`https://api.roblox.com/users/get-by-username?username=${username}`)
+}
+
+async function GetPrivatePartyFromUserIdAsync(UserId) {
+    for (const PrivateParty of Object.values(await privatePartyData.all())) {
+        if (PrivateParty.Owner == UserId) return PrivateParty
     }
-    return false
+    return
 }
 
-client.on('message', async message => {
-    try {
-        if (message.author.bot) return
-        if (!isCommand(message)) return;
-
-        const args = message.content.slice(('-').length).split(' ')
-        const command = args.shift().toLowerCase()
-        if (!client.commands.get(command) && !findCommandAlias(command)) return;
-
-        if (client.commands.get(command)) {
-            client.commands.get(command)
-            .execute(message, args)
-        }
-
-        if (!client.commands.get(command) && findCommandAlias(command)) {
-            findCommandAlias(command)
-            .execute(message, args)
-        }
-
-    } catch(err) {
-        
-    }
-})
-
-client.login(process.env.TOKEN);
+module.exports = {
+    GetDataFromUserIdAsync: GetDataFromUserIdAsync,
+    GetDataFromNameAsync: GetDataFromNameAsync,
+    GetPrivatePartyFromUserIdAsync: GetPrivatePartyFromUserIdAsync
+}
