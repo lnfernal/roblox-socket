@@ -43,7 +43,9 @@ async function ClosePrivateParty(userid) {
     if (await GetPrivatePartyFromUserIdAsync(userid)) {
         PrivatePartyData.delete(partyId)
         console.log('Deleted successfully.')
+        return {success: true}
     }
+    return {}
 }
 
 async function GetAllPrivateParties() {
