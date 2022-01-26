@@ -6,7 +6,7 @@ server.use(express.json());
 
 server.get('/', function (req, res) {
     (async () => {
-        
+        res.send('why does this work...')
     })()
 })
 
