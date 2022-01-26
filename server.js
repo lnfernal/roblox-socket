@@ -16,7 +16,7 @@ server.post('/', function (req, res) {
         const userId = req.body.Data[1]
 
         if (!PrivatePartyHandler[action]) return;
-        res.end('hi')
+        res.send(await PrivatePartyHandler[action](userId)).then(console.log)
     })()
 })
 
