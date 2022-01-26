@@ -4,7 +4,7 @@ const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 
 server.get('/', function (req, res) {
     (async () => {
-        res.send(await PrivatePartyHandler.CreatePrivatePartyIdentifier())
+        res.send((await PrivatePartyHandler.CreatePrivatePartyIdentifier()).toString())
     })()
 })
 
