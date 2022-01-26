@@ -4,11 +4,11 @@ const server = express();
 const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 server.use(express.json());
 
-server.get('/', function (req, res) {
+/*server.get('/', function (req, res) {
     (async () => {
         res.send('why does this work...')
     })()
-})
+})*/
 
 server.post('/', function (req, res) {
     (async () => {
