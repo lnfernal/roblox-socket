@@ -1,6 +1,10 @@
-const express = require('express')
-const server = express()
-const privatePartyHandler = require('./main.js')
+const express = require('express');
+const server = express();
+const PrivatePartyHandler = require('./PrivatePartyHandler.js');
+
+(async () => {
+    console.log(await PrivatePartyHandler.CreatePrivatePartyIdentifier())
+})()
 
 server.get('/', function (req, res) {
     console.log(req)
