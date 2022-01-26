@@ -6,7 +6,7 @@ server.use(express.json());
 
 /*server.get('/', function (req, res) {
     (async () => {
-        res.send('why does this work...')
+        
     })()
 })*/
 
@@ -16,8 +16,7 @@ server.post('/', function (req, res) {
         const userId = req.body.Data[1]
 
         if (!PrivatePartyHandler[action]) return;
-        const status = await PrivatePartyHandler[action](userId)
-        res.send(status)
+        res.end(await PrivatePartyHandler[action](userId))
     })()
 })
 
