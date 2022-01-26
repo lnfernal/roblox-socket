@@ -26,7 +26,7 @@ async function CreateNewPrivateParty(userid) {
         const PartyID = await CreatePrivatePartyIdentifier()
         console.log(userid, PartyID)
         console.log(await PrivatePartyData.all())
-        await PrivatePartyData.push('a', 'b')
+        await PrivatePartyData.set(PartyID, 'b')
 
         /*{
             PartyID: Number(PartyID),
