@@ -22,16 +22,14 @@ async function GetPrivatePartyFromUserIdAsync(UserId) {
 }
 
 async function CreateNewPrivateParty(userid) {
-    return (async () => {
-        const PartyID = await CreatePrivatePartyIdentifier()
-        /*PrivatePartyData.set(PartyID, {
-            PartyID: Number(PartyID),
-            Owner: userid,
-            Players: []
-        })*/
+    const PartyID = await CreatePrivatePartyIdentifier()
+    /*PrivatePartyData.set(PartyID, {
+        PartyID: Number(PartyID),
+        Owner: userid,
+        Players: []
+    })*/
 
-        return {success: true, id: PartyID}
-    })()
+    return {success: true, id: PartyID}
 }
 
 module.exports = {
