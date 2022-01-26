@@ -44,15 +44,10 @@ async function CreateNewPrivateParty(userid) {
 }
 
 async function ClosePrivateParty(userid) {
-    if (!await GetPrivatePartyFromUserIdAsync(userid)) {
-        console.log(`User ${userid} doesn't own a private party!`)
-        return
-    }
-
-    /*if (GetPrivatePartyFromUserIdAsync(userid)) {
+    if (await GetPrivatePartyFromUserIdAsync(userid)) {
         PrivatePartyData.delete(partyId)
-        console.log(await PrivatePartyData.all())
-    }*/
+        console.log('Deleted successfully.')
+    }
 }
 
 async function GetAllPrivateParties() {
