@@ -10,6 +10,7 @@ server.get('/', function (req, res) {
 
 server.get('/privateparty/get-by-userid/:id', function (req, res) {
     (async () => {
+        console.log(await PrivatePartyHandler.GetPrivatePartyFromUserIdAsync(req.params.id))
         res.send(await PrivatePartyHandler.GetPrivatePartyFromUserIdAsync(req.params.id))
     })()
 })
