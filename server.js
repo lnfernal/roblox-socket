@@ -10,6 +10,12 @@ server.get('/', function (req, res) {
     })()
 })
 
+server.get('/partyinfo/data', function (req, res) {
+    (async () => {
+        res.send('Test')
+    })()
+})
+
 server.post('/partyinfo', function (req, res) {
     (async () => {
         const action = req.body.Data[0]
