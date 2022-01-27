@@ -5,18 +5,16 @@ const PrivatePartyHandler = require('./PrivatePartyHandler.js');
 server.use(express.json());
 
 server.get('/', function (req, res) {
+    res.send('root')
+})
+
+server.get('/privateparty/get-by-userid/:id', function (req, res) {
     (async () => {
-        res.send('Not found')
+        console.log(req.params.id)
     })()
 })
 
-server.get('/partyinfo/data', function (req, res) {
-    (async () => {
-        res.send('Test')
-    })()
-})
-
-server.post('/partyinfo', function (req, res) {
+server.post('/', function (req, res) {
     (async () => {
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
