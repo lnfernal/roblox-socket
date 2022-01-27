@@ -6,27 +6,17 @@ server.use(express.json());
 
 server.get('/', function (req, res) {
     (async () => {
-        res.send('error')
+        res.send('Not found')
     })()
 })
 
-server.post('/privateparty/create', function (req, res) {
+server.post('/partyinfo', function (req, res) {
     (async () => {
         const action = req.body.Data[0]
         const userId = req.body.Data[1]
 
         if (!PrivatePartyHandler[action]) return;
-        res.send(await PrivatePartyHandler[action](userId))
-    })()
-})
-
-server.post('/privateparty/close', function (req, res) {
-    (async () => {
-        const action = req.body.Data[0]
-        const userId = req.body.Data[1]
-
-        if (!PrivatePartyHandler[action]) return;
-        res.json(await PrivatePartyHandler[action](userId))
+        res.send(await PrivatePartyHandler.CreateNewPrivateParty(userId))
     })()
 })
 
